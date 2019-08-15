@@ -1,25 +1,15 @@
 package com.synuwxy.demo.eventbus.common.observer;
 
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+@Component
 public class ThreadObserver {
 
-    private static Map<String, ArrayList<Object>> map = new HashMap<>();
-
-    private static ThreadObserver threadObserver;
-
-    private ThreadObserver() {}
-
-    public static ThreadObserver newInstance() {
-        if (threadObserver == null) {
-            synchronized (ThreadObserver.class) {
-                threadObserver = new ThreadObserver();
-            }
-        }
-        return threadObserver;
-    }
+    private Map<String, ArrayList<Object>> map = new HashMap<>();
 
     public void add(String name, Object obj) {
         if (map.get(name) == null) {
